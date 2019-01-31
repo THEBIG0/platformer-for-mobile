@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour {
 
+	//Author: Owen.Gunter
+	//Purpose: To be able to exit the level and to give slow-mo effect at end of level
+
 	// delays for 2 seconds until it loads the next level
-	// Note: in editor value is 0.4 as its a fifth(1/5) of 2 so it scales
-	// with out timescale variable
-	[SerializeField] float LevelLoadDelay = 2f;
+	// Note: It's a fifth(1/5) of 2 so it scales with out timescale variable
+
+	[SerializeField] float LevelLoadDelay = 0.4f;
 	[SerializeField] float LevelExitSlowMotion = 0.2f;
 
 	void OnTriggerEnter2D(Collider2D other)
