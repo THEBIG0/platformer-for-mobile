@@ -17,7 +17,10 @@ public class LevelExit : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		//On collision with LevelExit object load next level with 2 second delay
-		StartCoroutine(LoadNextLevel());
+		if (other.tag == "Player") 
+		{
+			StartCoroutine (LoadNextLevel ());
+		}
 	}
 
 	IEnumerator LoadNextLevel()
