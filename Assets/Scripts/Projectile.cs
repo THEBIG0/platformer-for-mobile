@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 	public Rigidbody2D projectile;
 	public Transform Launcher;
 	public float projectileSpeed = 50f;
-	//TO DO: ADD LIFE TIME TO BULLET AND ADD COLLIDER TO IT
+
 
     // Update is called once per frame
     void Update()
@@ -17,12 +17,16 @@ public class Projectile : MonoBehaviour
 			Rigidbody2D projectileInstance;
 			if (transform.localScale.x == 1)
 			{
+				
 				projectileInstance = Instantiate (projectile, Launcher.position, Launcher.rotation) as Rigidbody2D;
+
 				projectileInstance.AddForce (Launcher.right * projectileSpeed);
 			} 
 			else 
 			{
-				projectileInstance = Instantiate (projectile, Launcher.position, Launcher.rotation) as Rigidbody2D;
+				
+				projectileInstance = Instantiate (projectile, Launcher.position, Quaternion.AngleAxis(180, Vector3.forward)) as Rigidbody2D;
+
 				projectileInstance.AddForce (-Launcher.right * projectileSpeed);
 			}
 		}

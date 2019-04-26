@@ -9,16 +9,22 @@ public class GameSession : MonoBehaviour {
 	//Author: Owen.Gunter
 	//Purpose: To keep track of the variables and update them accordingly
 
-	[SerializeField] int playerlives = 3;
+	//[SerializeField] int PlayerHealth = 3;
 	[SerializeField] int score = 0;
 
-	[SerializeField] Text livesText;
+	[SerializeField] Text healthText;
 
 	[SerializeField] Text scoreText;
 
+	public float PlayerHealth = 100f;
+
+	public float HazardDamage = 10f;
+	public float EnemyDamage = 20f;
+	Health hs;
 	//a singleton
 	private void Awake()
 	{
+		//player.GetComponent<GameObject> ();
 		//gets number of objects with GameSession script in a scene
 		int numGameSessions = FindObjectsOfType<GameSession> ().Length;
 		// we only want 1 GameSession object within a scene
@@ -31,14 +37,17 @@ public class GameSession : MonoBehaviour {
 		{
 			DontDestroyOnLoad (gameObject);
 		}
+		hs = GetComponent<Health> ();
+
 	}
 
 	// Use this for initialization
 	void Start () {
 		//Converts variables to string
-		livesText.text = playerlives.ToString();
+		healthText.text = PlayerHealth.ToString();
 		scoreText.text = score.ToString();
-
+		//player.GetComponent<GameObject> ();
+		hs.currentHealth = PlayerHealth;
 	}
 
 	void Update()
@@ -55,12 +64,18 @@ public class GameSession : MonoBehaviour {
 		scoreText.text = score.ToString();
 	}
 	
-	public void PlayerDeath()
+	public void PlayerDeath(bool isHazard)
 	{
-		//if player has more than 1 life call TakeLife()...
-		if (playerlives > 1) {
-			TakeLife ();
+		//if player has more than 1 life call TakeDamage()...
+		if (PlayerHealth > 1 && isHazard) 
+		{
+			TakeDamage ();
+		} 
+		else if (PlayerHealth > 1 && isHazard == false)
+		{
+			TakeEnemyDamage ();
 		}
+		//TakeDamage ();
 		//else reset the game back to the beginning
 		else 
 		{
@@ -88,13 +103,35 @@ public class GameSession : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	private void TakeLife()
+	private void TakeDamage()
 	{
 		//update lives
-		playerlives--;
-		//Reload the current scene
-		var currentSceneIndex = SceneManager.GetActiveScene ().buildIndex;
-		SceneManager.LoadScene (currentSceneIndex);
-		livesText.text = playerlives.ToString();
+		PlayerHealth -= HazardDamage;
+		//take hazard damage
+		hs.CalculateDamage (HazardDamage);
+
+		if (PlayerHealth >= 1) 
+		{
+			//Reload the current scene
+			var currentSceneIndex = SceneManager.GetActiveScene ().buildIndex;
+			SceneManager.LoadScene (currentSceneIndex);
+			healthText.text = PlayerHealth.ToString ();
+			print (PlayerHealth);
+		} 
+
+		else 
+		{
+			ResetGameSession ();
+		}
+	
+
+
+	}
+
+	private void TakeEnemyDamage()
+	{
+		PlayerHealth -= EnemyDamage;
+		healthText.text = PlayerHealth.ToString();
+		hs.CalculateDamage (EnemyDamage);
 	}
 }

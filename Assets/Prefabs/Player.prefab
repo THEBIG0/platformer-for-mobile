@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799504933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.483, y: -0.186, z: 0}
+  m_LocalPosition: {x: 0.483, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4589167621334666}
@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 114326098344693824}
   - component: {fileID: 286898148}
   - component: {fileID: 286898149}
+  - component: {fileID: 286898156}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -212,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpSpeed: 7.5
+  jumpSpeed: 14
 --- !u!114 &286898148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,3 +248,17 @@ MonoBehaviour:
     type: 3}
   Launcher: {fileID: 799504934}
   projectileSpeed: 500
+--- !u!114 &286898156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996207691638622}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4406fe664d73f1a44afd3ef716ba51cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
