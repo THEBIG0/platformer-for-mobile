@@ -21,6 +21,7 @@ public class GameSession : MonoBehaviour {
 	public float HazardDamage = 10f;
 	public float EnemyDamage = 20f;
 	Health hs;
+	public Slider HealthBarSlider;
 	//a singleton
 	private void Awake()
 	{
@@ -107,6 +108,7 @@ public class GameSession : MonoBehaviour {
 	{
 		//update lives
 		PlayerHealth -= HazardDamage;
+		HealthBarSlider.value = -PlayerHealth;
 		//take hazard damage
 		hs.CalculateDamage (HazardDamage);
 
@@ -131,6 +133,7 @@ public class GameSession : MonoBehaviour {
 	private void TakeEnemyDamage()
 	{
 		PlayerHealth -= EnemyDamage;
+		HealthBarSlider.value = -PlayerHealth;
 		healthText.text = PlayerHealth.ToString();
 		hs.CalculateDamage (EnemyDamage);
 	}

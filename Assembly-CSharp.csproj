@@ -113,6 +113,7 @@
      <Compile Include="Assets\Imported Assets\2d-extras-master\Assets\Tilemap\Tiles\Random Tile\Scripts\RandomTile.cs" />
      <Compile Include="Assets\Imported Assets\2d-extras-master\Assets\Tilemap\Tiles\Rule Tile\Scripts\RuleTile.cs" />
      <Compile Include="Assets\Imported Assets\2d-extras-master\Assets\Tilemap\Tiles\Terrain Tile\Scripts\TerrainTile.cs" />
+     <Compile Include="Assets\Scripts\BatMovement.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\Coin.cs" />
      <Compile Include="Assets\Scripts\EnemyBullet.cs" />
@@ -129,6 +130,7 @@
      <Compile Include="Assets\Scripts\ScenePersist.cs" />
      <None Include="Assets\Imported Assets\2d-extras-master\Assets\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
      <None Include="Assets\Cinemachine\ReleaseNotes.txt" />
+     <None Include="Assets\Music\references for game music 2d platformer.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/ninja/Desktop/GITHUB PROJECTS/platformer-for-mobile/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
