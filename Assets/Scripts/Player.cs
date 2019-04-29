@@ -172,16 +172,40 @@ public class Player : MonoBehaviour {
 
 	private void Die()
 	{
+		
 		//if CapsuleCollider2D is touching enemy or hazard layers...
-		if (collider2d.IsTouchingLayers (LayerMask.GetMask ("Enemy", "Hazards"))) 
+		//if (collider2d.IsTouchingLayers (LayerMask.GetMask ("Enemy", "Hazards"))) 
+		if (collider2d.IsTouchingLayers (LayerMask.GetMask ("Hazards"))) 
 		{
+			
 			//player dies and can't move
 			isAlive = false;
 			anim.SetBool ("isAlive", false);
 			speed = 0f;
 			//See GameSession.cs to see PlayerDeath function
-			FindObjectOfType<GameSession> ().PlayerDeath ();
+			FindObjectOfType<GameSession> ().PlayerDeath (true);
 		}
 			
+	}
+
+	int counter = 0;
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		
+		if(other.tag == "Slime" && counter == 0)
+		{
+		    FindObjectOfType<GameSession> ().PlayerDeath (false);
+			counter++;
+			print (counter);
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.tag == "Slime" && counter == 1) 
+		{
+			counter = 0;
+			print ("counter is" + counter);
+		}
 	}
 }
